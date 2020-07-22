@@ -277,6 +277,6 @@ TOP: while(<INPUT>) {
 close(INPUT);
 close(OUTPUT);
 
-unlink("$host.raw") if (! $debug);
+unlink("$host.raw") unless ($debug || $log); unlink("$host.err") unless ($debug || $log);
 
 # check for completeness

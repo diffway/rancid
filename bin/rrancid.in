@@ -429,7 +429,7 @@ ProcessHistory("","","","");
 close(INPUT);
 close(OUTPUT);
 
-unlink("$host.raw") if (! $debug);
+unlink("$host.raw") unless ($debug || $log); unlink("$host.err") unless ($debug || $log);
 
 # check for completeness
 if (scalar(%commands) || !$clean_run || !$found_end) {
@@ -459,5 +459,5 @@ if (scalar(%commands) || !$clean_run || !$found_end) {
 	}
 	system("/usr/bin/tail -1 $host.new");
     }
-    unlink "$host.new" if (! $debug);
+    unlink "$host.new" unless ($debug || $log);
 }

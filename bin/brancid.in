@@ -255,7 +255,7 @@ if ($file) {
     open(INPUT,"<$host") || die "open failed for $host: $!\n";
 } else {
     print(STDERR "executing blogin -t $timeo -c\"$commandstr\" $host\n") if ($debug || $log);
-    system "blogin -t $timeo -c \"$commandstr\" $host </dev/null > $host.raw 2>&1" || die "blogin failed for $host: $!\n";
+    system "blogin -t $timeo -c \"$commandstr\" $host </dev/null > $host.raw 2>$host.err" || die "blogin failed for $host: $!\n";
     open(INPUT, "< $host.raw") || die "blogin failed for $host: $!\n";
 }
 
@@ -326,7 +326,7 @@ ProcessHistory("","","","");
 close(INPUT);
 close(OUTPUT);
 
-unlink("$host.raw") if (! $debug);
+unlink("$host.raw") unless ($debug || $log); unlink("$host.err") unless ($debug || $log);
 
 # check for completeness
 if (scalar(%commands) || !$clean_run || !$found_end) {
@@ -356,5 +356,5 @@ if (scalar(%commands) || !$clean_run || !$found_end) {
 	}
 	system("/usr/bin/tail -1 $host.new");
     }
-    unlink "$host.new" if (! $debug);
+    unlink "$host.new" unless ($debug || $log);
 }
