@@ -236,6 +236,7 @@ git )
 .old
 *.new
 *.raw
+*.err
 EOF
     if [ -f .gitignore.locale ] ; then
 	cat .gitignore.locale >> .gitignore
@@ -267,6 +268,7 @@ EOF
 .old
 *.new
 *.raw
+*.err
 EOF2
     if [ -f configs/.cvsignore.locale ] ; then
 	cat configs/.cvsignore.locale >> configs/.cvsignore
