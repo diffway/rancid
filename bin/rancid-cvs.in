@@ -194,6 +194,7 @@ do
 .old
 *.new
 *.raw
+*.err
 EOF
 	fi
 	$RCSSYS add configs
